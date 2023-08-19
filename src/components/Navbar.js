@@ -2,9 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Aboutus from './Aboutus'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Navbar(props) {
+ const diftoast=(message)=>{
+  toast(props.mode =='dark'?'ligh mode enabled':'dark mode enabled',{position: "top-center",
+  autoClose: 1000,});
+ }
   return (
     <div>
       <nav className={`navbar navbar-expand-lg bg-${props.mode} navbar-${props.mode}`}>
@@ -27,8 +33,8 @@ function Navbar(props) {
       </ul>
     </div>
     <div className={`form-check form-switch text-${props.mode==='light'?'dark':'light'}`}>
-  <input className="form-check-input" type="checkbox" onClick={props.toggleMode} role="switch" id="flexSwitchCheckDefault"/>
-  <label className="form-check-label ms-2"htmlFor="flexSwitchCheckDefault">Enable dark mode</label>
+  <input className="form-check-input" type="checkbox" onClick={props.toggleMode}onChange={diftoast} role="switch" id="flexSwitchCheckDefault"/>
+  <label className="form-check-label ms-2"htmlFor="flexSwitchCheckDefault" >Enable dark mode</label>
 </div>
   </div>
   

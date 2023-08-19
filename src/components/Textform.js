@@ -1,16 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Textform(props) {
      const handleupclick=()=>{
         console.log(`uppercase was clicked`);
         let newText= text.toUpperCase();
         setText(newText);
-        props.showAlert("converted to Upper case","success")
+        
+        function notify() {
+          toast("Converted to Uppercase",{position: "top-center",
+          autoClose: 1000,});
+          
+        }
+        notify(null);
+       
+        // props.showAlert("converted to Upper case","success")
      }
      const handlelowclick=()=>{
       let lowText= text.toLowerCase();
       setText(lowText);
-      props.showAlert("converted to Lower case","success")
+      function notify() {
+        toast.success("Converted to Lowercase",{position: "top-center",
+        autoClose: 1000,theme: "dark"});
+        
+      }
+      notify(null);
+      
+      // props.showAlert("converted to Lower case","success")
      }
      const handleonchange=(event)=>{
         console.log(`onchanged`);
@@ -18,7 +35,13 @@ function Textform(props) {
      }
      const handleclearclick=()=>{
       let newText='';
-      setText(newText)
+      setText(newText);
+      function notify() {
+        toast(" Text Cleared ",{position: "top-center",
+        autoClose: 1000,});
+        
+      }
+      notify(null);
      }
     const[text,setText]=useState('');
     const [myStyle,setmyStyle]=useState({
@@ -29,7 +52,13 @@ function Textform(props) {
       let text=document.getElementById("box");
       text.select();
       navigator.clipboard.writeText(text.value);
-      props.showAlert("Text Copied","success")
+      function notify() {
+        toast("Text has been Copied",{position: "top-center",
+        autoClose: 1000,});
+        
+      }
+      notify(null);
+      // props.showAlert("Text Copied","success")
     }
     // const[btnText,setBtnText]=useState("enable dark mode")
     // const toggleStyle=()=>{
